@@ -43,7 +43,7 @@ resource "aws_db_subnet_group" "my_subnet_group" {
     Name = "My DB subnet group"
   }
 }
-
+ 
  
 # Recurso RDS PostgreSQL
 resource "aws_db_instance" "db-rds-fiaptech" {
