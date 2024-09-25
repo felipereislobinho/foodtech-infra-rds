@@ -4,7 +4,7 @@
 provider "aws" {
   region = "us-east-1" # Defina sua região AWS aqui
 }
-
+ 
 data "aws_availability_zones" "available" {}
 
 resource "aws_security_group" "sg-rds-fiaptech" {
