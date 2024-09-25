@@ -47,10 +47,20 @@ resource "aws_db_instance" "db-rds-fiaptech" {
   username                = "dbadmin"
   publicly_accessible     = false
   vpc_security_group_ids  = [aws_security_group.sg-rds-fiaptech.id]
+  subnet_group_name       = aws_db_subnet_group.my_subnet_group.name
 
 lifecycle {
   prevent_destroy = true
 }
+}
+
+resource "aws_db_subnet_group" "my_subnet_group" {
+  name       = "my-subnet-group"
+  subnet_ids = ["subnet-05a655a9ad4f143b6", "subnet-045e474a5f2cafafb"]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
 }
 
 resource "aws_secretsmanager_secret_rotation" "rds-fiaptech" {
