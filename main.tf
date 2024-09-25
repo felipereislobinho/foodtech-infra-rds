@@ -64,7 +64,7 @@ lifecycle {
 }
 }
 
-
+ 
 
 resource "aws_secretsmanager_secret_rotation" "rds-fiaptech" {
   secret_id = aws_db_instance.db-rds-fiaptech.master_user_secret[0].secret_arn
