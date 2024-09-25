@@ -43,15 +43,15 @@ resource "aws_db_subnet_group" "my_subnet_group" {
     Name = "My DB subnet group"
   }
 }
- 
- 
+
+
 # Recurso RDS PostgreSQL
 resource "aws_db_instance" "db-rds-fiaptech" {
   identifier              = "rds-fiaptech"
   allocated_storage       = 20
   storage_type            = "gp2"
   engine                  = "postgres"
-  engine_version          = "14.6"
+  engine_version          = "11.22"
   instance_class          = "db.t2.micro"
   manage_master_user_password = true # Guarda o usuário e senha do banco de dados no AWS Secrets Manager
   username                = "dbadmin"
