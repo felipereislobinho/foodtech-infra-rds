@@ -39,3 +39,4 @@ module "rds" {
   vpc_security_group_id = module.security_group.security_group_id
   db_subnet_group_name  = module.subnet_group.subnet_group_name
 }
+ 
