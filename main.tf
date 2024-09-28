@@ -35,14 +35,40 @@ resource "aws_security_group" "sg-rds-fiaptech" {
 }
 }
 
+data "aws_subnet" "eks_subnet_a" {
+  filter {
+    name   = "tag:Name"
+    values = ["eks_subnet_a"]
+  }
+}
+
+data "aws_subnet" "eks_subnet_b" {
+  filter {
+    name   = "tag:Name"
+    values = ["eks_subnet_b"]
+  }
+}
+
 resource "aws_db_subnet_group" "my_subnet_group" {
   name       = "my-subnet-group"
-  subnet_ids = ["subnet-05a655a9ad4f143b6", "subnet-045e474a5f2cafafb"]
+  subnet_ids = [
+    data.aws_subnet.eks_subnet_a.id,
+    data.aws_subnet.eks_subnet_b.id
+  ]
 
   tags = {
     Name = "My DB subnet group"
   }
 }
+
+// resource "aws_db_subnet_group" "my_subnet_group" {
+//   name       = "my-subnet-group"
+//   subnet_ids = ["subnet-05a655a9ad4f143b6", "subnet-045e474a5f2cafafb"]
+
+//   tags = {
+//     Name = "My DB subnet group"
+//   }
+// }
 
 
 # Recurso RDS PostgreSQL
