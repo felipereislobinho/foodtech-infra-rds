@@ -7,9 +7,16 @@ provider "aws" {
  
 data "aws_availability_zones" "available" {}
 
+data "aws_vpc" "selected_vpc" {
+  filter {
+    name   = "tag:Name"
+    values = ["eks_vpc"]  # Substitua "your-vpc-name" pelo nome da sua VPC
+  }
+}
+
 resource "aws_security_group" "sg-rds-fiaptech" {
   name   = "rds-prod-securitygroup"
-  vpc_id = "vpc-01fabac4b74d26a00"
+  vpc_id = data.aws_vpc.selected_vpc.id
 
   ingress {
     from_port   = 5432
@@ -30,10 +37,39 @@ resource "aws_security_group" "sg-rds-fiaptech" {
     Terraform   = "true"
     Environment = "prod"
   }
+
   lifecycle {
-  prevent_destroy = true
+    prevent_destroy = true
+  }
 }
-}
+
+// resource "aws_security_group" "sg-rds-fiaptech" {
+//   name   = "rds-prod-securitygroup"
+//   vpc_id = "vpc-01fabac4b74d26a00"
+
+//   ingress {
+//     from_port   = 5432
+//     to_port     = 5432
+//     protocol    = "tcp"
+//     cidr_blocks = ["0.0.0.0/0"]
+//   }
+ 
+//   egress {
+//     from_port   = 5432
+//     to_port     = 5432
+//     protocol    = "tcp"
+//     cidr_blocks = ["0.0.0.0/0"]
+//   }
+
+//   tags = {
+//     Project     = "rms"
+//     Terraform   = "true"
+//     Environment = "prod"
+//   }
+//   lifecycle {
+//   prevent_destroy = true
+// }
+// }
 
 data "aws_subnet" "eks_subnet_a" {
   filter {
