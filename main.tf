@@ -22,7 +22,7 @@ data "aws_subnet" "eks_subnet_b" {
     name   = "tag:Name"
     values = ["eks_subnet_b"]
   }
-}
+} 
 
 module "security_group" {
   source = "./modules/security_group"
