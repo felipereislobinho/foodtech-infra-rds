@@ -13,7 +13,7 @@ data "aws_vpc" "selected_vpc" {
     values = ["eks_vpc"]  # Substitua "your-vpc-name" pelo nome da sua VPC
   }
 }
-
+ 
 resource "aws_security_group" "sg-rds-fiaptech" {
   name   = "rds-prod-securitygroup"
   vpc_id = data.aws_vpc.selected_vpc.id
