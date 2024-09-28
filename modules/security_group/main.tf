@@ -4,7 +4,7 @@ variable "vpc_id" {
   type        = string
 }
 
-resource "aws_security_group" "sg_rds_fiaptech" {
+resource "aws_security_group" "sg_rds_foodtech" {
   name   = "rds-prod-securitygroup"
   vpc_id = var.vpc_id
 
@@ -34,5 +34,5 @@ resource "aws_security_group" "sg_rds_fiaptech" {
 }
 
 output "security_group_id" {
-  value = aws_security_group.sg_rds_fiaptech.id
+  value = aws_security_group.sg_rds_foodtech.id
 }

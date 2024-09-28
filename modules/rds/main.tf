@@ -9,8 +9,8 @@ variable "db_subnet_group_name" {
   type        = string
 }
 
-resource "aws_db_instance" "db_rds_fiaptech" {
-  identifier                  = "rds-fiaptech"
+resource "aws_db_instance" "db_rds_foodtech" {
+  identifier                  = "rds-foodtech"
   allocated_storage           = 20
   storage_type                = "gp2"
   engine                      = "postgres"
@@ -27,8 +27,8 @@ resource "aws_db_instance" "db_rds_fiaptech" {
   }
 }
 
-resource "aws_secretsmanager_secret_rotation" "rds_fiaptech" {
-  secret_id = aws_db_instance.db_rds_fiaptech.master_user_secret[0].secret_arn
+resource "aws_secretsmanager_secret_rotation" "rds_foodtech" {
+  secret_id = aws_db_instance.db_rds_foodtech.master_user_secret[0].secret_arn
 
   rotation_rules {
     automatically_after_days = 30
@@ -36,5 +36,5 @@ resource "aws_secretsmanager_secret_rotation" "rds_fiaptech" {
 }
 
 output "db_instance_identifier" {
-  value = aws_db_instance.db_rds_fiaptech.identifier
+  value = aws_db_instance.db_rds_foodtech.identifier
 }

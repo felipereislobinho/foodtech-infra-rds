@@ -6,7 +6,7 @@ provider "aws" {
 data "aws_vpc" "selected_vpc" {
   filter {
     name   = "tag:Name"
-    values = ["eks_vpc"]
+    values = ["foodtech_eks_vpc"]
   }
 }
 
