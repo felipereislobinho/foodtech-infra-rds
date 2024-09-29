@@ -31,6 +31,12 @@ resource "aws_security_group" "sg_rds_foodtech" {
   lifecycle {
     prevent_destroy = true
   }
+  tags = {
+    Name        = "rds-prod-securitygroup"          
+    Project     = "foodtech_project"   
+    Environment = "prod"               
+    Owner       = "Grupo27-6SOAT"             
+  }
 }
 
 output "security_group_id" {
