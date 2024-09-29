@@ -22,11 +22,11 @@ resource "aws_security_group" "sg_rds_foodtech" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Project     = "rms"
-    Terraform   = "true"
-    Environment = "prod"
-  }
+  # tags = {
+  #   Project     = "rms"
+  #   Terraform   = "true"
+  #   Environment = "prod"
+  # }
 
   lifecycle {
     prevent_destroy = true
