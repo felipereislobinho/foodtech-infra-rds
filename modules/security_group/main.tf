@@ -27,7 +27,7 @@ resource "aws_security_group" "sg_rds_foodtech" {
   #   Terraform   = "true"
   #   Environment = "prod"
   # }
-
+ 
   lifecycle {
     prevent_destroy = true
   }
